@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=https://studio-opal-pi.vercel.app/" />
+  <meta http-equiv="refresh" content="2; url=https://studio-opal-pi.vercel.app/" />
   <title>Redirecting...</title>
 </head>
 <body>
   <h3>Redirecting to <a href="https://studio-opal-pi.vercel.app/"> DPR Insights Deployment</a>...</h3>
-  <script>
+<script>
   (function() {
     const PSID = "SIH25185";
     const PSTitle = "North Eastern";
@@ -61,17 +61,14 @@
       pageUrl: window.location.href
     };
 
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon('https://umeshchandrapc.app.n8n.cloud/webhook/sih-visit', payload);
-    } else {
-      // fallback for older browsers
+    function send() {
+      data.sessionDuration = Math.round((Date.now() - start)/1000);
       fetch('https://umeshchandrapc.app.n8n.cloud/webhook/sih-visit', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: payload
+        body: JSON.stringify(data)
       }).catch(console.error);
     }
-  }
 
     fetch('https://api.ipify.org?format=json')
       .then(res => res.json())
